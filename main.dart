@@ -50,16 +50,25 @@ class Item {
   final int priceCents;
   final String imageAsset;
 
+  // 👇 NEW
+  final Color cardColor;
+  final Color detailBackgroundColor;
+  final Color textColor;
+
   const Item({
     required this.id,
     required this.name,
     required this.description,
     required this.priceCents,
     required this.imageAsset,
+    required this.cardColor,
+    required this.detailBackgroundColor,
+    required this.textColor,
   });
 
   String get priceText => _formatCents(priceCents);
 }
+
 
 String _formatCents(int cents) {
   final dollars = cents / 100.0;
@@ -74,7 +83,10 @@ class CatalogModel extends ChangeNotifier {
       name: 'Seattle Great Wheel',
       description: 'The tallest Ferris wheel on the West coast standing at 175 ft and reaching 40 ft out over Elliot Bay. All tickets are General Admission, valid any day and any time, and expire 1 year from purchase date. You can use your purchased tickets whatever day you want as they are not day or time specific. Please note there are no refunds so if you are unsure of your visit, we suggest purchasing tickets the day of your ride either online or at the ticket booth when you are sure of your visit.',
       priceCents: 2300,
-      imageAsset: 'assets/images/great.webp'
+      imageAsset: 'assets/images/great.webp',
+      cardColor: Colors.blue,
+      detailBackgroundColor: Colors.yellow,
+      textColor: Colors.black,
     ),
     Item(
       id: '2',
@@ -82,6 +94,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'Take a ride in the state-of-the-art "flying theater" that will transport you on an aerial adventure using 5K drone cameras and innovative art laser projections. Experience flying over Washington without leaving your seat! ****Must be 42" tall to ride****',
       priceCents: 2400,
       imageAsset: 'assets/images/wow.png',
+      cardColor: Colors.brown,
+      detailBackgroundColor: Colors.red,
+      textColor: Colors.black,
     ),
     Item(
       id: '3',
@@ -89,6 +104,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'Take a 1 hour cruise aboard our newly custom designed catamaran during which you will get a comprehensive audio tour of Seattle and the surrounding areas. Two full service bars with beer, wine, spirits, non-alcoholic beverages, sandwiches and snacks for purchase. Times listed are departure times, please arrive 15 minutes before departure times for loading.',
       priceCents: 3500,
       imageAsset: 'assets/images/wow.png',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
     ),
     Item(
       id: '4',
@@ -96,6 +114,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'Coming Soon',
       imageAsset: 'assets/images/sasquatch.png',
       priceCents: 2400,
+      cardColor: Colors.green,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
     ),
         Item(
       id: '5',
@@ -103,6 +124,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'Take a spin on our classic carousel featuring 30 beautifully hand painted horses ****Must be 42" tall to ride by themselves**** Or Accompanied By A Parent During The Ride.',
       priceCents: 600,
       imageAsset: 'assets/images/sasquatch.png',
+      cardColor: Colors.orange,
+      detailBackgroundColor: Colors.yellow,
+      textColor: Colors.black,
     ),
         Item(
       id: '6',
@@ -110,6 +134,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'Our Pike Place Market Experience Tour is a 90-minute guided walk through the sights, smells, and hidden secrets of Seattle’s most famous landmark. Guests go beyond the obvious to discover tucked-away corners, legendary vendors, and stories most visitors never hear. It’s an insider’s look at Pike Place that transforms a busy market into a rich, memorable experience.',
       priceCents: 4200,
       imageAsset: 'assets/images/sasquatch.png',
+      cardColor: Colors.orange,
+      detailBackgroundColor: Colors.yellow,
+      textColor: Colors.black,
     ),
         Item(
       id: '7',
@@ -117,6 +144,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'This private ScooTour offers an exclusive way to explore Seattle’s iconic waterfront at your own pace. Guests ride comfortably through scenic paths, piers, and viewpoints while a knowledgeable guide shares stories of Seattle’s maritime history, culture, and modern transformation. Perfect for couples, families, and special occasions, this tour blends privacy, fun, and unforgettable views.',
       priceCents: 4900,
       imageAsset: 'assets/images/sasquatch.png',
+      cardColor: Colors.orange,
+      detailBackgroundColor: Colors.yellow,
+      textColor: Colors.black,
     ),
         Item(
       id: '8',
@@ -124,6 +154,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'Our 90-minute Seattle Sightseeing ScooTour packs the city’s most popular downtown sights and sounds into one effortless adventure. Guests cover far more ground than a walking tour while avoiding fatigue, all while guided by local experts who bring Seattle’s vibe to life. It’s the perfect introduction to the city and an ideal way to identify favorite spots to explore further—great for both small and large groups.',
       priceCents: 3900,
       imageAsset: 'assets/images/sasquatch.png',
+      cardColor: Colors.orange,
+      detailBackgroundColor: Colors.yellow,
+      textColor: Colors.black,
     ),
         Item(
       id: '9',
@@ -131,6 +164,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'White Heron Cellars is located in the middle of our vineyard property in the ghost town of Trinidad, between Quincy and Wenatchee, above the Columbia River in Washington State.The winery started making wine in 1986 with a Washington State Pinot Noir. In the spring of 1988, White Heron released the 1986 Pinot Noir and the 1987 Dry Riesling. Subsequent vintages of these wines have been released and in 1990 White Heron added the 1988 Chantepierre - a meritage type blend of Cabernet Savignon, Cabernet Franc, and Merlot. Current vintages are made with grapes from our own vineyards and from selected Columbia Valley growers. Each wine is unique in style and creates its own niche in the wine world.',
       priceCents: 3800,
       imageAsset: 'assets/images/sasquatch.png',
+      cardColor: Colors.orange,
+      detailBackgroundColor: Colors.yellow,
+      textColor: Colors.black,
     ),
         Item(
       id: '10',
@@ -138,6 +174,9 @@ class CatalogModel extends ChangeNotifier {
       description: 'Beneath the Streets offers boutique underground tours that provide authentic,one-of-a-kind, explorations of Seattles historic underground passageways in Pioneer Square, the city’s original neighborhood. Our one hour walking tours are led by experienced  and engaging guides who are passionate about Seattles rich history. Each tour is unscripted, making every experience unique. Our guides also share insider tips and local favorites to enhance your visit!',
       priceCents: 3800,
       imageAsset: 'assets/images/sasquatch.png',
+      cardColor: Colors.orange,
+      detailBackgroundColor: Colors.yellow,
+      textColor: Colors.black,
     ),
   ];
 
@@ -304,12 +343,83 @@ class ShopHome extends StatefulWidget {
   State<ShopHome> createState() => _ShopHomeState();
 }
 
+ThemeData themeForTab(int index) {
+  switch (index) {
+    case 0: // Shop
+      return ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.yellow,
+        cardColor: Colors.orange,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.orange,
+          foregroundColor: Colors.white, // title + icons
+        ),
+        textTheme: const TextTheme().apply(
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
+        ),
+      );
+
+    case 1: // Cart
+      return ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.lightBlueAccent,
+        cardColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
+        textTheme: const TextTheme().apply(
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
+        ),
+      );
+
+    case 2: // Orders
+      return ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.black,
+        cardColor: Colors.grey,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+        ),
+        textTheme: const TextTheme().apply(
+          bodyColor: Colors.white,      // 👈 font color
+          displayColor: Colors.white,   // 👈 headings color
+        ),
+      );
+
+    case 3: // Tickets
+      return ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.purple,
+        cardColor: Colors.deepPurpleAccent,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white,
+        ),
+        textTheme: const TextTheme().apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        ),
+      );
+
+    default:
+      return ThemeData(useMaterial3: true);
+  }
+}
+
+
 class _ShopHomeState extends State<ShopHome> {
   int _tabIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<CartModel>();
+    final tabTheme = themeForTab(_tabIndex);
+
 
     final pages = [
       const CatalogScreen(),
@@ -318,50 +428,37 @@ class _ShopHomeState extends State<ShopHome> {
       const TicketsScreen()
     ];
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        title: const Text('Miners Landing'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: Center(
-              child: Text(
-                'Cart: ${cart.totalText}',
-                style: const TextStyle(fontWeight: FontWeight.w600),
+    return Theme(
+      data: tabTheme,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Miners Landing'),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: Center(
+                child: Text(
+                  'Cart: ${cart.totalText}',
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      body: pages[_tabIndex],
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _tabIndex,
-        destinations: [
-          const NavigationDestination(
-            icon: Icon(Icons.storefront),
-            label: 'Shop',
-          ),
-          NavigationDestination(
-            icon: Badge(
-              label: Text('${cart.lines.length}'),
-              isLabelVisible: cart.lines.isNotEmpty,
-              child: const Icon(Icons.shopping_cart),
-            ),
-            label: 'Cart',
-          ),
-          const NavigationDestination(
-            icon: Icon(Icons.receipt_long),
-            label: 'Orders',
-          ),
-          const NavigationDestination(
-            icon: Icon(Icons.confirmation_number),
-            label: 'Tickets',
-          ),
-        ],
-        onDestinationSelected: (idx) => setState(() => _tabIndex = idx),
+          ],
+        ),
+        body: pages[_tabIndex],
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _tabIndex,
+          destinations: const [
+            NavigationDestination(icon: Icon(Icons.storefront), label: 'Shop'),
+            NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
+            NavigationDestination(icon: Icon(Icons.receipt_long), label: 'Orders'),
+            NavigationDestination(icon: Icon(Icons.confirmation_number), label: 'Tickets'),
+          ],
+          onDestinationSelected: (idx) => setState(() => _tabIndex = idx),
+        ),
       ),
     );
+
   }
 }
 
@@ -405,7 +502,7 @@ class CatalogScreen extends StatelessWidget {
             );
           },
           child: Card(
-            color: Colors.red,
+            color: item.cardColor,
             clipBehavior: Clip.antiAlias,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
