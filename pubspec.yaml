@@ -69,7 +69,25 @@ flutter:
     - assets/images/wow.png
     - assets/images/sasquatch.png
     - assets/images/salish.png
-
+    - assets/images/logo.png
+    - assets/images/salish.webp
+    - assets/images/orca.jpg
+    - assets/images/hoodie.jpg
+    - assets/images/beer.jpg
+    - assets/images/call.jpg
+    - assets/images/chips.jpg
+    - assets/images/chowder.jpg
+    - assets/images/cocktail.jpg
+    - assets/images/cookie.jpg
+    - assets/images/drinkmenu.jpg
+    - assets/images/foodmenu.jpg
+    - assets/images/greypolo.jpg
+    - assets/images/navypolo.jpg
+    - assets/images/niket.jpg
+    - assets/images/top.jpg    
+    - assets/images/salmon.jpg    
+    - assets/images/carousel.jpg
+    - assets/images/arcade.webp
 
   # To add assets to your application, add an assets section, like this:
   # assets:
