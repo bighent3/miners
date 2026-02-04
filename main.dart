@@ -29,7 +29,7 @@ class ShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Miners Landing',
+      title: 'Miners Landing at Pier 57',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
@@ -40,6 +40,9 @@ class ShopApp extends StatelessWidget {
   }
 }
 
+enum StoreCategory { food, apparel }
+
+
 /// -------------------------
 /// DATA MODELS
 /// -------------------------
@@ -49,22 +52,24 @@ class Item {
   final String description;
   final int priceCents;
   final String imageAsset;
+  final StoreCategory storeCategory;
 
-  // 👇 NEW
   final Color cardColor;
   final Color detailBackgroundColor;
   final Color textColor;
 
-  const Item({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.priceCents,
-    required this.imageAsset,
-    required this.cardColor,
-    required this.detailBackgroundColor,
-    required this.textColor,
-  });
+
+const Item({
+  required this.id,
+  required this.name,
+  required this.description,
+  required this.priceCents,
+  required this.imageAsset,
+  required this.cardColor,
+  required this.detailBackgroundColor,
+  required this.textColor,
+  this.storeCategory = StoreCategory.food, 
+});
 
   String get priceText => _formatCents(priceCents);
 }
@@ -94,8 +99,8 @@ class CatalogModel extends ChangeNotifier {
       description: 'Take a ride in the state-of-the-art "flying theater" that will transport you on an aerial adventure using 5K drone cameras and innovative art laser projections. Experience flying over Washington without leaving your seat! ****Must be 42" tall to ride****',
       priceCents: 2400,
       imageAsset: 'assets/images/wow.png',
-      cardColor: Colors.brown,
-      detailBackgroundColor: Colors.red,
+      cardColor: Color.fromARGB(255, 179, 102, 2),
+      detailBackgroundColor: Color.fromARGB(255, 179, 102, 2),
       textColor: Colors.black,
     ),
     Item(
@@ -103,18 +108,18 @@ class CatalogModel extends ChangeNotifier {
       name: 'Salish Sea Tours',
       description: 'Take a 1 hour cruise aboard our newly custom designed catamaran during which you will get a comprehensive audio tour of Seattle and the surrounding areas. Two full service bars with beer, wine, spirits, non-alcoholic beverages, sandwiches and snacks for purchase. Times listed are departure times, please arrive 15 minutes before departure times for loading.',
       priceCents: 3500,
-      imageAsset: 'assets/images/wow.png',
-      cardColor: Colors.red,
+      imageAsset: 'assets/images/salmon.jpg',
+      cardColor: Color.fromARGB(255, 160, 5, 5),
       detailBackgroundColor: Colors.black,
       textColor: Colors.white,
     ),
     Item(
       id: '4',
       name: 'Sasquatch Mountain',
-      description: 'Coming Soon',
+      description: 'For generations, whispers echoed from these woods. Our team followed the signs—footprints too large, readings too strange—and found a locked facility cut deep into the mountain. This summer, the door opens.',
       imageAsset: 'assets/images/sasquatch.png',
       priceCents: 2400,
-      cardColor: Colors.green,
+      cardColor: Color.fromARGB(255, 34, 172, 38),
       detailBackgroundColor: Colors.black,
       textColor: Colors.white,
     ),
@@ -123,68 +128,179 @@ class CatalogModel extends ChangeNotifier {
       name: 'Carousel',
       description: 'Take a spin on our classic carousel featuring 30 beautifully hand painted horses ****Must be 42" tall to ride by themselves**** Or Accompanied By A Parent During The Ride.',
       priceCents: 600,
-      imageAsset: 'assets/images/sasquatch.png',
+      imageAsset: 'assets/images/carousel.jpg',
       cardColor: Colors.orange,
       detailBackgroundColor: Colors.yellow,
       textColor: Colors.black,
     ),
-        Item(
+            Item(
       id: '6',
-      name: 'Pike Place The Market Experience Tour',
-      description: 'Our Pike Place Market Experience Tour is a 90-minute guided walk through the sights, smells, and hidden secrets of Seattle’s most famous landmark. Guests go beyond the obvious to discover tucked-away corners, legendary vendors, and stories most visitors never hear. It’s an insider’s look at Pike Place that transforms a busy market into a rich, memorable experience.',
-      priceCents: 4200,
-      imageAsset: 'assets/images/sasquatch.png',
-      cardColor: Colors.orange,
-      detailBackgroundColor: Colors.yellow,
-      textColor: Colors.black,
-    ),
-        Item(
-      id: '7',
-      name: 'Private Seattle Waterfront ScooTour',
-      description: 'This private ScooTour offers an exclusive way to explore Seattle’s iconic waterfront at your own pace. Guests ride comfortably through scenic paths, piers, and viewpoints while a knowledgeable guide shares stories of Seattle’s maritime history, culture, and modern transformation. Perfect for couples, families, and special occasions, this tour blends privacy, fun, and unforgettable views.',
-      priceCents: 4900,
-      imageAsset: 'assets/images/sasquatch.png',
-      cardColor: Colors.orange,
-      detailBackgroundColor: Colors.yellow,
-      textColor: Colors.black,
-    ),
-        Item(
-      id: '8',
-      name: 'Seattle Sightseeing ScooTour',
-      description: 'Our 90-minute Seattle Sightseeing ScooTour packs the city’s most popular downtown sights and sounds into one effortless adventure. Guests cover far more ground than a walking tour while avoiding fatigue, all while guided by local experts who bring Seattle’s vibe to life. It’s the perfect introduction to the city and an ideal way to identify favorite spots to explore further—great for both small and large groups.',
-      priceCents: 3900,
-      imageAsset: 'assets/images/sasquatch.png',
-      cardColor: Colors.orange,
-      detailBackgroundColor: Colors.yellow,
-      textColor: Colors.black,
-    ),
-        Item(
-      id: '9',
-      name: 'White Heron Cellars Tasting',
-      description: 'White Heron Cellars is located in the middle of our vineyard property in the ghost town of Trinidad, between Quincy and Wenatchee, above the Columbia River in Washington State.The winery started making wine in 1986 with a Washington State Pinot Noir. In the spring of 1988, White Heron released the 1986 Pinot Noir and the 1987 Dry Riesling. Subsequent vintages of these wines have been released and in 1990 White Heron added the 1988 Chantepierre - a meritage type blend of Cabernet Savignon, Cabernet Franc, and Merlot. Current vintages are made with grapes from our own vineyards and from selected Columbia Valley growers. Each wine is unique in style and creates its own niche in the wine world.',
-      priceCents: 3800,
-      imageAsset: 'assets/images/sasquatch.png',
-      cardColor: Colors.orange,
-      detailBackgroundColor: Colors.yellow,
-      textColor: Colors.black,
-    ),
-        Item(
-      id: '10',
-      name: 'Beneath the Streets Underground Tour',
-      description: 'Beneath the Streets offers boutique underground tours that provide authentic,one-of-a-kind, explorations of Seattles historic underground passageways in Pioneer Square, the city’s original neighborhood. Our one hour walking tours are led by experienced  and engaging guides who are passionate about Seattles rich history. Each tour is unscripted, making every experience unique. Our guides also share insider tips and local favorites to enhance your visit!',
-      priceCents: 3800,
-      imageAsset: 'assets/images/sasquatch.png',
+      name: 'Klondike Arcade',
+      description: 'Step into the historic heart of the waterfront at Pier 57s Klondike Arcade! As part of Miners Landing, this compact, family-friendly hotspot offers a nostalgic blend of classic games, modern hits, and pinball. Perfectly paired with the Seattle Great Wheel and Wings over Washington, it’s the ultimate stop for quick, fun-filled entertainment.',
+      priceCents: 600,
+      imageAsset: 'assets/images/arcade.webp',
       cardColor: Colors.orange,
       detailBackgroundColor: Colors.yellow,
       textColor: Colors.black,
     ),
   ];
 
+    // ✅ NEW: Store items (hard-coded / customer-facing)
+  final List<Item> _storeItems = const [
+    Item(
+      id: 's1',
+      name: 'Salish Sea Tours Hoodie',
+      description: 'Embrace the spirit of the Pacific Northwest with the Seattle Pier 57 Salish Logo Art Hoodie. Featuring striking, indigenous-inspired design, this cozy 75% cotton/25% polyester black hoodie blends authentic local culture with iconic waterfront style. Perfect for chilly Seattle days, it’s a must-have wearable souvenir from the historic Pier 57.',
+      priceCents: 8500,
+      imageAsset: 'assets/images/hoodie.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.apparel,
+    ),
+    Item(
+      id: 's2',
+      name: 'Draft and Craft Beers',
+      description: 'Experience the heart of the Seattle waterfront at Pier 57 (Miners Landing) with a beer selection as refreshing as the Puget Sound breeze. Pair local, PNW craft brews and classic favorites with stunning views of the Great Wheel, perfect for relaxing after enjoying nearby attractions and fresh seafood. all in a reusable collectors cup',
+      priceCents: 900,
+      imageAsset: 'assets/images/beer.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+    Item(
+      id: 's3',
+      name: 'Call Liquor',
+      description: 'Experience the heart of the Seattle waterfront at Pier 57, home to Miner’s Landing, the iconic Great Wheel, and breathtaking views of Puget Sound. Combining historic charm with modern excitement, this vibrant hub features premier dining, unique shops, and the thrilling Wings Over Washington ride, making it a must-visit destination for unforgettable waterfront memories.',
+      priceCents: 1400,
+      imageAsset: 'assets/images/call.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+    Item(
+      id: 's4',
+      name: 'Chips',
+      description: 'These arent just chips; theyre a crunch experience. Thick-sliced, kettle-cooked, and packed with intense flavors like our signature Jalapeño or classic Sea Salt, Tims delivers a satisfying, robust crunch in every bite. Whether youre fueling an outdoor adventure or craving the perfect snack, grab a bag of Tims Cascade Style—the best potato chip on Earth!',
+      priceCents: 350,
+      imageAsset: 'assets/images/chips.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+    Item(
+      id: 's5',
+      name: 'Homemade Clam Chowder',
+      description: 'Dive into the taste of the Pacific Northwest at Pier 57 with our signature, award-winning clam chowder. Crafted with fresh, locally sourced ingredients and packed with tender clams in a rich, creamy base, it’s the perfect, hearty comfort food to enjoy right on the Seattle waterfront. Dont miss out—grab a bowl and experience the authentic flavor of the bay!',
+      priceCents: 900,
+      imageAsset: 'assets/images/chowder.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+    Item(
+      id: 's6',
+      name: 'Cocktail',
+      description: 'A Family Day Out at Pier 57 in Seattle with Kids - Marcie in ...Elevate your Seattle experience at Pier 57, the ultimate waterfront destination featuring the iconic Great Wheel. Sip on handcrafted cocktails while enjoying panoramic views of Puget Sound and downtown. It’s the perfect spot for a scenic happy hour, blending Pacific Northwest flavors with breathtaking city views.',
+      priceCents: 1400,
+      imageAsset: 'assets/images/cocktail.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+    Item(
+      id: 's7',
+      name: 'Cookie',
+      description: 'Indulge in a true taste of the Pacific Northwest at Pier 57! Located at the bustling heart of Seattle’s waterfront under the Great Wheel, these freshly baked, gourmet cookies are the ultimate treat after a day of sightseeing at Miner’s Landing. Perfectly warm and gooey, they are the perfect souvenir for your senses.',
+      priceCents: 350,
+      imageAsset: 'assets/images/cookie.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+    Item(
+      id: 's8',
+      name: 'Drink Menu',
+      description: 'Experience the ultimate Seattle waterfront vibe at Pier 57s Fishermans Restaurant & Bar, where classic, expertly crafted cocktails meet stunning Puget Sound views. Sip on refreshing, coastal-inspired drinks while enjoying a cozy, nautical atmosphere right under the Great Wheel, making it the perfect spot for pre-dinner drinks or a sunset happy hour.',
+      priceCents: 900,
+      imageAsset: 'assets/images/drinkmenu.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+    Item(
+      id: 's9',
+      name: 'Food Menu',
+      description: 'Experience the ultimate Pacific Northwest dining experience at Pier 57s The Fishermans Restaurant, where fresh, local seafood takes center stage. Enjoy stunning Elliot Bay views while indulging in signature, interactive Sea Feasts, fresh oysters, and mesquite-grilled specialties. Its the perfect blend of historic waterfront charm and, delicious,,, sustainable,,,,, Northwest flavors.',
+      priceCents: 1400,
+      imageAsset: 'assets/images/foodmenu.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+    Item(
+      id: 's10',
+      name: 'Grey Polo',
+      description: 'Capture the spirit of the Puget Sound with the Pier 57 Grey Polo—the ultimate Pacific Northwest souvenir. Featuring a subtle nod to Seattles iconic waterfront and the Great Wheel, this comfortable, stylish shirt offers a classic fit perfect for breezy, casual adventures. Look sharp while rocking Seattles favorite pier.',
+      priceCents: 5000,
+      imageAsset: 'assets/images/greypolo.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.apparel,
+    ),
+    Item(
+      id: 's11',
+      name: 'Navy Polo',
+      description: 'Capture the essence of the Pacific Northwest with the Seattle Pier 57 Navy Polo. Featuring a refined design inspired by the iconic waterfront, this shirt combines crisp nautical style with casual comfort. Perfect for a day at Miners Landing, its the essential, versatile choice for effortless, classic Seattle style.',
+      priceCents: 5000,
+      imageAsset: 'assets/images/navypolo.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.apparel,
+    ),
+    Item(
+      id: 's12',
+      name: 'Nike T Shirt',
+      description: 'Capture the spirit of the Pacific Northwest with this exclusive Pier 57 Nike shirt. Featuring stunning Coast Salish artistry, this premium tee merges local heritage with iconic style. Perfect for Seattle locals and visitors, it’s a wearable tribute to the waterfront, designed for comfort and cultural pride. Own a piece of the Salish Sea.',
+      priceCents: 4000,
+      imageAsset: 'assets/images/niket.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.apparel,
+    ),
+    Item(
+      id: 's13',
+      name: 'Top Shelf',
+      description: 'Elevate your Seattle waterfront experience at Pier 57’s Miner’s Landing, where premium, top-shelf liquor meets unparalleled views of Puget Sound and the Olympic Mountains. Sip on expertly crafted cocktails featuring high-end spirits while enjoying iconic views from the Ferris wheel or within the vibrant, historic dining and event spaces.',
+      priceCents: 1700,
+      imageAsset: 'assets/images/top.jpg',
+      cardColor: Colors.red,
+      detailBackgroundColor: Colors.black,
+      textColor: Colors.white,
+      storeCategory: StoreCategory.food,
+    ),
+  ];
+
   List<Item> get items => List.unmodifiable(_items);
+
+  List<Item> get storeItems => List.unmodifiable(_storeItems);
 
   Item? findById(String id) {
     try {
-      return _items.firstWhere((i) => i.id == id);
+      // Optional: search both lists
+      final all = [..._items, ..._storeItems];
+      return all.firstWhere((i) => i.id == id);
     } catch (_) {
       return null;
     }
@@ -315,7 +431,7 @@ class TicketsModel extends ChangeNotifier {
       id: 't1',
       title: 'Pike Place Cocktail Experience',
       description: 'Show this ticket at check-in. Valid for 1 entry.',
-      imageAsset: 'assets/images/WCTPlogo.png',
+      imageAsset: 'assets/images/miners.png',
       barcodeNumber: '123456789012',
       qrData: 'WCTP-TICKET-t1-123456789012',
     ),
@@ -323,7 +439,7 @@ class TicketsModel extends ChangeNotifier {
       id: 't2',
       title: 'Seattle Great Wheel Add-on',
       description: 'Present this ticket at the gate. Valid for 1 ride.',
-      imageAsset: 'assets/images/WCTPlogo.png',
+      imageAsset: 'assets/images/miners.png',
       barcodeNumber: '987654321098',
       qrData: 'WCTP-TICKET-t2-987654321098',
     ),
@@ -348,10 +464,10 @@ ThemeData themeForTab(int index) {
     case 0: // Shop
       return ThemeData(
         useMaterial3: true,
-        scaffoldBackgroundColor: Colors.yellow,
-        cardColor: Colors.orange,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 201, 116, 5),
+        cardColor: const Color.fromARGB(255, 148, 88, 9),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.orange,
+          backgroundColor: Color.fromARGB(255, 148, 88, 9),
           foregroundColor: Colors.white, // title + icons
         ),
         textTheme: const TextTheme().apply(
@@ -360,7 +476,23 @@ ThemeData themeForTab(int index) {
         ),
       );
 
-    case 1: // Cart
+    case 1: // ✅ Store
+      return ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.black,
+        cardColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+        ),
+        textTheme: const TextTheme().apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        ),
+      );
+
+
+    case 2: // Cart
       return ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.lightBlueAccent,
@@ -375,7 +507,7 @@ ThemeData themeForTab(int index) {
         ),
       );
 
-    case 2: // Orders
+    case 3: // Orders
       return ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.black,
@@ -390,7 +522,7 @@ ThemeData themeForTab(int index) {
         ),
       );
 
-    case 3: // Tickets
+    case 4: // Tickets
       return ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.purple,
@@ -423,6 +555,7 @@ class _ShopHomeState extends State<ShopHome> {
 
     final pages = [
       const CatalogScreen(),
+      const StoreScreen(),
       const CartScreen(),
       const OrdersScreen(),
       const TicketsScreen()
@@ -432,7 +565,7 @@ class _ShopHomeState extends State<ShopHome> {
       data: tabTheme,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Miners Landing'),
+          title: const Text('Miners Landing at Pier 57'),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 12),
@@ -450,6 +583,7 @@ class _ShopHomeState extends State<ShopHome> {
           selectedIndex: _tabIndex,
           destinations: const [
             NavigationDestination(icon: Icon(Icons.storefront), label: 'Shop'),
+            NavigationDestination(icon: Icon(Icons.shopping_bag), label: 'Store'),
             NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Cart'),
             NavigationDestination(icon: Icon(Icons.receipt_long), label: 'Orders'),
             NavigationDestination(icon: Icon(Icons.confirmation_number), label: 'Tickets'),
@@ -485,7 +619,7 @@ class CatalogScreen extends StatelessWidget {
       maxCrossAxisExtent: 220,
       mainAxisSpacing: 12,
       crossAxisSpacing: 12,
-      childAspectRatio: 0.55,
+      childAspectRatio: 0.5,
       ),
       // 👆 END GRID DELEGATE
       itemBuilder: (context, index) {
@@ -565,6 +699,162 @@ class CatalogScreen extends StatelessWidget {
     );
   }
 }
+
+class StoreScreen extends StatelessWidget {
+  const StoreScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final catalog = context.watch<CatalogModel>();
+    final cart = context.watch<CartModel>();
+
+    final foodItems = catalog.storeItems
+        .where((i) => i.storeCategory == StoreCategory.food)
+        .toList();
+
+    final apparelItems = catalog.storeItems
+        .where((i) => i.storeCategory == StoreCategory.apparel)
+        .toList();
+
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Store'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'Food'),
+              Tab(text: 'Apparel'),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            _StoreGrid(items: foodItems, cart: cart),
+            _StoreGrid(items: apparelItems, cart: cart),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _StoreGrid extends StatelessWidget {
+  final List<Item> items;
+  final CartModel cart;
+
+  const _StoreGrid({
+    required this.items,
+    required this.cart,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (items.isEmpty) {
+      return const Center(child: Text('No items in this category yet.'));
+    }
+
+    return GridView.builder(
+      padding: const EdgeInsets.all(12),
+      itemCount: items.length,
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 220,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
+        childAspectRatio: 0.5,
+      ),
+      itemBuilder: (context, index) {
+        final item = items[index];
+        final qty = cart.quantityFor(item.id);
+
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ProductDetailScreen(item: item),
+              ),
+            );
+          },
+          child: Card(
+            color: item.cardColor,
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AspectRatio(
+                  aspectRatio: 1 / 1,
+                  child: Image.asset(
+                    item.imageAsset,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          item.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: item.textColor,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          item.priceText,
+                          style: TextStyle(color: item.textColor),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          item.description,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: item.textColor),
+                        ),
+                        const Spacer(),
+                        if (qty == 0)
+                          SizedBox(
+                            width: double.infinity,
+                            child: FilledButton(
+                              onPressed: () => cart.add(item),
+                              child: const Text('Add'),
+                            ),
+                          )
+                        else
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                onPressed: () => cart.removeOne(item),
+                                icon: const Icon(Icons.remove),
+                              ),
+                              Text('$qty', style: TextStyle(color: item.textColor)),
+                              IconButton(
+                                onPressed: () => cart.add(item),
+                                icon: const Icon(Icons.add),
+                              ),
+                            ],
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+
+
 
 class TicketsScreen extends StatelessWidget {
   const TicketsScreen({super.key});
